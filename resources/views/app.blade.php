@@ -15,7 +15,12 @@
         @vite(['resources/js/app.ts', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
     </head>
+
     <body class="font-sans antialiased">
-        @inertia
+<div class="container">
+    <h1 class="text-center">¡Probando Bootstrap en Laravel!</h1>
+</div>
+
+    @inertia
     </body>
 </html>
