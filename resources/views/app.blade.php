@@ -19,7 +19,8 @@
     <body class="font-sans antialiased">
 <div class="container">
     <p class="text-center">¡Probando Bootstrap en Laravel!</p>
-    <h1>Funciona</h1>
+    <x-user-status />
+
 </div>
 
     @inertia
