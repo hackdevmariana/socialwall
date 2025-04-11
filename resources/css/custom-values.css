@@ -1,15 +1,15 @@
 :root {
-    --navbar-bg: #007bff;
-    --left-bg: #ffc107;
-    --center-bg: #28a745;
-    --right-bg: #dc3545;
-    --text-color: black;
+    --navbar-bg: #e3f2fd; /* Azul muy claro */
+    --left-bg: #ffebcc; /* Color cálido */
+    --center-bg: #f0f4c3; /* Verde pastel */
+    --right-bg: #ffe0e0; /* Rojo muy claro */
+    --text-color: #2e2e2e; /* Gris oscuro en lugar de negro */
 }
 
 .dark-mode {
-    --navbar-bg: #1c1c1c;
-    --left-bg: #333;
-    --center-bg: #444;
-    --right-bg: #555;
-    --text-color: white;
+    --navbar-bg: #1a237e; /* Azul profundo */
+    --left-bg: #4a148c; /* Magenta intenso */
+    --center-bg: #283593; /* Azul medio */
+    --right-bg: #6a1b9a; /* Púrpura oscuro */
+    --text-color: #dadada; /* Gris claro en lugar de blanco */
 }
