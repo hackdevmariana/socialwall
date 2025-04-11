@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Layout con Bootstrap</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
+    <link href="/css/custom-values.css" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-        .navbar-custom { background-color: #007bff; color: white; }
-        .left-column { background-color: #ffc107; padding: 20px; }
-        .center-column { background-color: #28a745; padding: 20px; }
-        .right-column { background-color: #dc3545; padding: 20px; }
+        .navbar-custom { background-color: var(--navbar-bg); color: var(--text-color); }
+        .left-column { background-color: var(--left-bg); padding: 20px; color: var(--text-color); }
+        .center-column { background-color: var(--center-bg); padding: 20px; color: var(--text-color); }
+        .right-column { background-color: var(--right-bg); padding: 20px; color: var(--text-color); }
     </style>
+    
     @vite(['resources/js/app.ts'])
 
 </head>
@@ -29,7 +32,7 @@
                 <a class="nav-link text-white" href="#">Sección 3</a>
             </div>
             <div class="right">
-                <a class="btn btn-light" href="#">Perfil</a>
+                <x-color-mode />
             </div>
         </div>
     </nav>

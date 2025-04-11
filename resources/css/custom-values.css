@@ -1,0 +1,15 @@
+:root {
+    --navbar-bg: #007bff;
+    --left-bg: #ffc107;
+    --center-bg: #28a745;
+    --right-bg: #dc3545;
+    --text-color: black;
+}
+
+.dark-mode {
+    --navbar-bg: #1c1c1c;
+    --left-bg: #333;
+    --center-bg: #444;
+    --right-bg: #555;
+    --text-color: white;
+}
