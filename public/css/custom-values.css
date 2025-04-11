@@ -13,9 +13,10 @@
 }
 
 body {
-    background-color: var(--body-bg);
-    color: var(--text-color);
+    background-color: var(--body-bg) !important;
+    color: var(--text-color) !important;
 }
+
 
 a {
     color: var(--link-color);
