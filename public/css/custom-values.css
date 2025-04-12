@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@300;400;600&display=swap');
 
 :root {
     --body-bg: #f5f7fa; /* Blanco con tono azulado */
@@ -6,21 +6,26 @@
     --link-color: #007bff;
     --link-hover: #0056b3;
     --border-color: rgba(0, 0, 0, 0.1);
+    --font-primary: 'Poppins';
+    --font-secondary: 'Roboto';
 }
 
+/* Modo oscuro */
 .dark-mode {
     --body-bg: #1a1a2e; /* Azul oscuro profundo */
     --text-color: #e0e0e0;
     --link-color: #ff4081;
     --link-hover: #c2185b;
     --border-color: rgba(255, 255, 255, 0.2);
+    --font-primary: 'Poppins';
+    --font-secondary: 'Roboto';
 }
 
 /* General */
 body {
     background-color: var(--body-bg) !important;
     color: var(--text-color) !important;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-secondary);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -30,6 +35,7 @@ a {
     text-decoration: none;
     font-weight: 600;
     transition: color 0.2s ease;
+    font-family: var(--font-secondary);
 }
 
 a:hover {
@@ -50,6 +56,10 @@ a:hover {
     padding: 10px;
 }
 
-.sun{
+.sun {
     color: #f7eb4e;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
 }
