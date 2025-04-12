@@ -6,7 +6,8 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
+
 
 // Dashboard del usuario con autenticación
 Route::get('/dashboard', function () {

@@ -64,17 +64,49 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-primary);
 }
 
+.logo-container {
+    display: flex; /* Cambia inline-block a flex para mejor alineación */
+    position: relative; /* Necesario para la posición absoluta del slogan */
+    align-items: center;
+    cursor: pointer;
+}
+
+.slogan {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%); /* Centrar el slogan */
+    color: var(--text-color);
+    font-family: var(--font-secondary);
+    background: rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: lighter;
+}
+
+.logo-container:hover .slogan {
+    display: block;
+}
+
+
 .logo-first {
     color: #00b894;
     font-family: var(--font-primary);
+    font-weight: bold;
 }
 
 .logo-second {
     color: #007bff;
     font-family: var(--font-primary);
+    font-weight: bold;
 }
 
-.slogan{
-    color: var(--text-color);
-    font-family: var(--font-secondary);
+.left-column {
+    border-right: 1px solid var(--border-color);
+}
+
+.right-column {
+    border-left: 1px solid var(--border-color);
 }

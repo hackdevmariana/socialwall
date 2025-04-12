@@ -1,15 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@300;400;600&display=swap');
+
 :root {
-    --navbar-bg: #e3f2fd; /* Azul muy claro */
-    --left-bg: #ffebcc; /* Color cálido */
-    --center-bg: #f0f4c3; /* Verde pastel */
-    --right-bg: #ffe0e0; /* Rojo muy claro */
-    --text-color: #2e2e2e; /* Gris oscuro en lugar de negro */
+    --body-bg: #f5f7fa; /* Blanco con tono azulado */
+    --text-color: #2c3e50; /* Azul grisáceo */
+    --link-color: #007bff;
+    --link-hover: #0056b3;
+    --border-color: rgba(0, 0, 0, 0.1);
+    --font-primary: 'Poppins';
+    --font-secondary: 'Roboto';
 }
 
+/* Modo oscuro */
 .dark-mode {
-    --navbar-bg: #1a237e; /* Azul profundo */
-    --left-bg: #4a148c; /* Magenta intenso */
-    --center-bg: #283593; /* Azul medio */
-    --right-bg: #6a1b9a; /* Púrpura oscuro */
-    --text-color: #dadada; /* Gris claro en lugar de blanco */
+    --body-bg: #1a1a2e; /* Azul oscuro profundo */
+    --text-color: #e0e0e0;
+    --link-color: #ff4081;
+    --link-hover: #c2185b;
+    --border-color: rgba(255, 255, 255, 0.2);
+    --font-primary: 'Poppins';
+    --font-secondary: 'Roboto';
+}
+
+/* General */
+body {
+    background-color: var(--body-bg) !important;
+    color: var(--text-color) !important;
+    font-family: var(--font-secondary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Enlaces */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+    font-family: var(--font-secondary);
+}
+
+a:hover {
+    color: var(--link-hover);
+    text-decoration: none;
+}
+
+/* Columnas */
+.left-column, .right-column {
+    padding: 20px;
+    min-height: 100vh; /* Ocupar toda la altura */
+    border-color: var(--border-color);
+}
+
+/* Navbar */
+.navbar-custom {
+    background-color: var(--navbar-bg);
+    padding: 10px;
+}
+
+.sun {
+    color: #f7eb4e;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+}
+.logo-container {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Efecto de elevación al hacer hover */
+.logo-container:hover {
+    transform: translateY(-15px); 
+}
+
+.slogan {
+    display: block;
+    opacity: 0;
+    position: absolute;
+    top: 80%; 
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    color: var(--text-color);
+    font-family: var(--font-secondary);
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+    white-space: nowrap; 
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    font-size: 1.2rem;
+    font-weight: lighter;
+}
+
+/* Aparece suavemente al hacer hover */
+.logo-container:hover .slogan {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Ajustes del tamaño del logo */
+.logo-first, .logo-second {
+    font-family: var(--font-primary);
+    font-weight: bold;
+    font-size: 2.5rem; 
+}
+/* Espaciado entre las palabras */
+.logo-first {
+    color: #00b894;
+    margin-right: 5px;
+}
+
+.logo-second {
+    color: #007bff;
+}
+
+.left-column {
+    border-right: 1px solid var(--border-color);
+}
+
+.right-column {
+    border-left: 1px solid var(--border-color);
 }
