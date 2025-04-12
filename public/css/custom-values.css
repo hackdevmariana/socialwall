@@ -34,7 +34,7 @@ a {
 
 a:hover {
     color: var(--link-hover);
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 /* Columnas */
@@ -48,4 +48,8 @@ a:hover {
 .navbar-custom {
     background-color: var(--navbar-bg);
     padding: 10px;
+}
+
+.sun{
+    color: #f7eb4e;
 }
