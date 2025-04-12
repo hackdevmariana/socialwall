@@ -63,3 +63,18 @@ a:hover {
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-primary);
 }
+
+.logo-first {
+    color: #00b894;
+    font-family: var(--font-primary);
+}
+
+.logo-second {
+    color: #007bff;
+    font-family: var(--font-primary);
+}
+
+.slogan{
+    color: var(--text-color);
+    font-family: var(--font-secondary);
+}
