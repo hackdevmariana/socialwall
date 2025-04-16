@@ -1,5 +1,5 @@
 @if (Auth::check())
-    <p>Hola, {{ Auth::user()->name }}</p>
+    <p>Hola, <a href="{{ route('profile.edit') }}" >{{ Auth::user()->name }}</a>
 @else
     <a href="{{ route('login') }}" >Entrar</a>&nbsp; &nbsp; | &nbsp; &nbsp; 
     <a href="{{ route('register') }}" >Nuevo usuario</a>
