@@ -10,6 +10,32 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
+    <script>
+        document.getElementById('write-post-btn').addEventListener('click', function () {
+            const editor = document.getElementById('tiny-editor');
+            const writePostBtn = document.getElementById('write-post-btn');
+    
+            // Cambiar visibilidad del editor
+            editor.classList.toggle('d-none');
+    
+            // Inicializar TinyMCE cuando se muestra por primera vez
+            if (!editor.tinymceInit) {
+                tinymce.init({
+                    selector: '#tiny-editor',
+                    height: 300,
+                    menubar: false,
+                    plugins: 'advlist autolink lists link charmap print preview anchor',
+                    toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist | link'
+                });
+                editor.tinymceInit = true; // Marcar como inicializado
+            }
+    
+            // Opcional: Cambiar el texto del botón
+            writePostBtn.textContent = editor.classList.contains('d-none') ? 'Escribir post' : 'Cerrar editor';
+        });
+    </script>
+    
+
     @vite(['resources/js/app.ts'])
     
 
