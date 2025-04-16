@@ -8,6 +8,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
     @vite(['resources/js/app.ts'])
     
@@ -56,6 +57,10 @@
     
             <!-- Columna central (siempre visible) -->
             <div class="col-12 col-lg-6 center-column">
+
+                <!-- Incluir TinyMCE aquí --> 
+                 Escribir post
+
                 <p>Contenido principal</p>
             </div>
     
