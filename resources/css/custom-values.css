@@ -124,3 +124,20 @@ h1, h2, h3, h4, h5, h6 {
 .right-column {
     border-left: 1px solid var(--border-color);
 }
+
+
+/* TinyMCE  */
+
+textarea#tiny-editor {
+    transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0;
+    height: 0;
+}
+textarea#tiny-editor.d-none {
+    opacity: 0;
+    height: 0;
+}
+textarea#tiny-editor:not(.d-none) {
+    opacity: 1;
+    height: 300px;
+}
