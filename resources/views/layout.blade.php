@@ -102,6 +102,13 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('write-post-btn').addEventListener('click', function () {
+                // Tu código aquí...
+            });
+        });
+    </script>
     
 
 </body>
