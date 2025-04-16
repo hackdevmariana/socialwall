@@ -58,8 +58,14 @@
             <!-- Columna central (siempre visible) -->
             <div class="col-12 col-lg-6 center-column">
 
-                <!-- Incluir TinyMCE aquí --> 
-                 Escribir post
+                <!-- Enlace para "Escribir post", visible solo para usuarios registrados -->
+                @auth
+                    <div id="editor-container">
+                        <button id="write-post-btn" class="btn btn-primary mb-3">Escribir post</button>
+                        <textarea id="tiny-editor" class="d-none"></textarea>
+                    </div>
+                @endauth
+
 
                 <p>Contenido principal</p>
             </div>
