@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@300;400;600&display=swap');
 
 :root {
-    --body-bg: #f5f7fa; /* Blanco con tono azulado */
-    --text-color: #2c3e50; /* Azul grisáceo */
+    --body-bg: #f5f7fa; 
+    --text-color: #2c3e50;
     --link-color: #007bff;
     --link-hover: #0056b3;
     --border-color: rgba(0, 0, 0, 0.1);
@@ -140,4 +140,24 @@ textarea#tiny-editor.d-none {
 textarea#tiny-editor:not(.d-none) {
     opacity: 1;
     height: 300px;
+}
+
+
+/* Buttons */
+
+.text-button {
+    width: 100%;
+    text-align: center;
+    background-color: var(--body-bg);
+    color: var(--text-color, #2c3e50);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    font-family: var(--font-primary);
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.text-button:hover {
+    background-color: var(--link-hover);
 }

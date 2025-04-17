@@ -21,7 +21,7 @@
         // Cambiar el texto del botón
         writePostBtn.textContent = editorContainer.classList.contains('d-none')
             ? 'Escribir post'
-            : 'Cerrar editor';
+            : 'Vista normal';
     });
 });
 
@@ -78,7 +78,7 @@
                 <!-- Enlace para "Escribir post", visible solo para usuarios registrados -->
                 @auth
     <div id="editor-container">
-        <button id="write-post-btn" class="btn btn-primary mb-3">Escribir post</button>
+        <button id="write-post-btn" class="text-button">Escribir post</button>
         <div id="post-editor-container" class="d-none">
             <x-tiny-mce-editor editor-id="post-editor" />
         </div>
