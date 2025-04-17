@@ -12,6 +12,11 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Spatie\Permission\Models\Role;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+
 
 class UserResource extends Resource
 {
@@ -21,29 +26,40 @@ class UserResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                //
-            ]);
+        return $form->schema([
+            TextInput::make('name')
+                ->label('Nombre')
+                ->required(),
+            TextInput::make('email')
+                ->label('Correo Electrónico')
+                ->email()
+                ->required(),
+            Select::make('roles')
+                ->label('Roles')
+                ->multiple()
+                ->relationship('roles', 'name') // Usa la relación del modelo User con roles
+                ->preload()
+                ->required(),
+        ]);
     }
 
     public static function table(Table $table): Table
     {
-        return $table
-            ->columns([
-                //
-            ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+        return $table->columns([
+            TextColumn::make('name')
+                ->label('Nombre')
+                ->sortable()
+                ->searchable(),
+            TextColumn::make('email')
+                ->label('Correo Electrónico')
+                ->sortable()
+                ->searchable(),
+            TextColumn::make('roles.name')
+                ->label('Roles')
+                ->formatStateUsing(function ($state) {
+                    return implode(', ', $state ?? []);
+                }), // Muestra los roles separados por comas
+        ]);
     }
 
     public static function getRelations(): array
