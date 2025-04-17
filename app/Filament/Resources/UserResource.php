@@ -54,11 +54,12 @@ class UserResource extends Resource
                 ->label('Correo Electrónico')
                 ->sortable()
                 ->searchable(),
-            TextColumn::make('roles.name')
+            TextColumn::make('roles')
                 ->label('Roles')
-                ->formatStateUsing(function ($state) {
-                    return implode(', ', $state ?? []);
-                }), // Muestra los roles separados por comas
+                ->getStateUsing(function ($record) {
+                    return $record->roles->pluck('name')->join(', ');
+                }),
+
         ]);
     }
 

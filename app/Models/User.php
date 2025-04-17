@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
-use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Role;
 
 
 
@@ -48,10 +48,5 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class);
     }
 }
