@@ -5,6 +5,17 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../css/custom-values.css';
 
 
+//  TinyMCE
+
+import tinymce from 'tinymce/tinymce';
+import 'tinymce/themes/silver/theme';
+import 'tinymce/plugins/advlist';    
+import 'tinymce/plugins/autolink';   
+import 'tinymce/plugins/lists';      
+import 'tinymce/plugins/link';       
+
+
+
 
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';

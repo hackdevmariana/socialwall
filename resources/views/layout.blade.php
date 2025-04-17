@@ -8,33 +8,24 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
     <script>
-        document.getElementById('write-post-btn').addEventListener('click', function () {
-            const editor = document.getElementById('tiny-editor');
-            const writePostBtn = document.getElementById('write-post-btn');
-    
-            // Cambiar visibilidad del editor
-            editor.classList.toggle('d-none');
-    
-            // Inicializar TinyMCE cuando se muestra por primera vez
-            if (!editor.tinymceInit) {
-                tinymce.init({
-                    selector: '#tiny-editor',
-                    height: 300,
-                    menubar: false,
-                    plugins: 'advlist autolink lists link charmap print preview anchor',
-                    toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist | link'
-                });
-                editor.tinymceInit = true; // Marcar como inicializado
-            }
-    
-            // Opcional: Cambiar el texto del botón
-            writePostBtn.textContent = editor.classList.contains('d-none') ? 'Escribir post' : 'Cerrar editor';
-        });
+        document.addEventListener('DOMContentLoaded', function () {
+    const writePostBtn = document.getElementById('write-post-btn');
+    const editorContainer = document.getElementById('post-editor-container');
+
+    writePostBtn.addEventListener('click', function () {
+        // Alternar visibilidad del contenedor
+        editorContainer.classList.toggle('d-none');
+
+        // Cambiar el texto del botón
+        writePostBtn.textContent = editorContainer.classList.contains('d-none')
+            ? 'Escribir post'
+            : 'Cerrar editor';
+    });
+});
+
     </script>
-    
 
     @vite(['resources/js/app.ts'])
     
@@ -86,12 +77,16 @@
 
                 <!-- Enlace para "Escribir post", visible solo para usuarios registrados -->
                 @auth
-                    <div id="editor-container">
-                        <button id="write-post-btn" class="btn btn-primary mb-3">Escribir post</button>
-                        <textarea id="tiny-editor" class="d-none"></textarea>
-                    </div>
-                @endauth
+    <div id="editor-container">
+        <button id="write-post-btn" class="btn btn-primary mb-3">Escribir post</button>
+        <div id="post-editor-container" class="d-none">
+            <x-tiny-mce-editor editor-id="post-editor" />
+        </div>
+    </div>
+@endauth
 
+
+            
 
                 <p>Contenido principal</p>
             </div>
@@ -102,14 +97,8 @@
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('write-post-btn').addEventListener('click', function () {
-                // Tu código aquí...
-            });
-        });
-    </script>
     
+
 
 </body>
 
