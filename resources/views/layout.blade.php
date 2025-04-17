@@ -15,13 +15,13 @@
     const editorContainer = document.getElementById('post-editor-container');
 
     writePostBtn.addEventListener('click', function () {
-        // Alternar visibilidad del contenedor
-        editorContainer.classList.toggle('d-none');
+        // Alternar la clase 'show'
+        editorContainer.classList.toggle('show');
 
         // Cambiar el texto del botón
-        writePostBtn.textContent = editorContainer.classList.contains('d-none')
-            ? 'Escribir post'
-            : 'Vista normal';
+        writePostBtn.textContent = editorContainer.classList.contains('show')
+            ? 'Cerrar editor'
+            : 'Escribir post';
     });
 });
 
@@ -75,15 +75,17 @@
             <!-- Columna central (siempre visible) -->
             <div class="col-12 col-lg-6 center-column">
 
-                <!-- Enlace para "Escribir post", visible solo para usuarios registrados -->
-                @auth
-    <div id="editor-container">
-        <button id="write-post-btn" class="text-button">Escribir post</button>
-        <div id="post-editor-container" class="d-none">
-            <x-tiny-mce-editor editor-id="post-editor" />
-        </div>
+            <!-- Enlace para "Escribir post", visible solo para usuarios registrados -->
+            @auth
+<div id="editor-container">
+    <button id="write-post-btn" class="text-button mb-3">Escribir post</button>
+    <div id="post-editor-container" class="transition">
+        <x-tiny-mce-editor editor-id="post-editor" />
     </div>
+</div>
 @endauth
+
+
 
 
             

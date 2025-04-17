@@ -161,3 +161,21 @@ textarea#tiny-editor:not(.d-none) {
 .text-button:hover {
     background-color: var(--link-hover);
 }
+
+/* TinyMCE transition */
+
+#post-editor-container {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease, height 0.6s ease;
+    position: relative;
+    height: 0;
+    overflow: hidden;
+}
+
+#post-editor-container.show {
+    opacity: 1;
+    transform: translateY(0);
+    height: 300px;
+    overflow: visible;
+}
