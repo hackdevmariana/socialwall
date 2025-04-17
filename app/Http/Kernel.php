@@ -25,7 +25,8 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \App\Http\Middleware\AdminOnly::class, // Tu middleware AdminOnly
+            \App\Http\Middleware\AdminOnly::class,
+            \Inertia\Middleware::class,
         ],
         'api' => [
             'throttle:api',

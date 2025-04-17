@@ -2,7 +2,9 @@
     <textarea id="{{ $editorId ?? 'tiny-editor' }}"></textarea>
 </div>
 
-<script src="/tinymce/tinymce/tinymce.min.js"></script>
+
+<script src="{{ mix('tinymce/tinymce/tinymce.min.js') }}"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         tinymce.init({

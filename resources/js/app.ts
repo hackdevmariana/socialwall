@@ -9,10 +9,12 @@ import '../css/custom-values.css';
 
 import tinymce from 'tinymce/tinymce';
 import 'tinymce/themes/silver/theme';
-import 'tinymce/plugins/advlist';    
-import 'tinymce/plugins/autolink';   
-import 'tinymce/plugins/lists';      
-import 'tinymce/plugins/link';       
+import 'tinymce/plugins/advlist';
+import 'tinymce/plugins/autolink';
+import 'tinymce/plugins/lists';
+import 'tinymce/plugins/link';
+
+window.tinymce = tinymce; 
 
 
 
