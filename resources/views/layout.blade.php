@@ -77,14 +77,17 @@
 
             <!-- Enlace para "Escribir post", visible solo para usuarios registrados -->
             @auth
-<div id="editor-container">
-    <button id="write-post-btn" class="text-button mb-3">Escribir post</button>
-    <div id="post-editor-container" class="transition">
-        <x-tiny-mce-editor editor-id="post-editor" />
-    </div>
-</div>
-@endauth
-
+                <div id="editor-container">
+                    <button id="write-post-btn" class="text-button mb-3">Escribir post</button>
+                    
+    
+                    <div id="post-editor-container" class="transition">
+                        <input type="text" id="post-title" name="title" placeholder="Título del post" class="text-input mb-3" required />
+                        <input type="url" id="social-link" name="social_link" placeholder="Enlace opcional (Youtube, Twitter...)" class="text-input mb-3" />
+                        <x-tiny-mce-editor editor-id="post-editor" />
+                    </div>
+                </div>
+            @endauth
 
 
 

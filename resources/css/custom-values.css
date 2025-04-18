@@ -8,6 +8,9 @@
     --border-color: rgba(0, 0, 0, 0.1);
     --font-primary: 'Poppins';
     --font-secondary: 'Roboto';
+    --no-white: #f5f7fa;
+    --no-black: #0f1113;
+
 }
 
 /* Modo oscuro */
@@ -19,6 +22,8 @@
     --border-color: rgba(255, 255, 255, 0.2);
     --font-primary: 'Poppins';
     --font-secondary: 'Roboto';
+    --no-white: #f5f7fa;
+    --no-black: #0f1113;
 }
 
 /* General */
@@ -179,3 +184,20 @@ textarea#tiny-editor:not(.d-none) {
     height: 300px;
     overflow: visible;
 }
+
+
+/* Inputs */
+
+.text-input {
+    width: 100%;
+    text-align: left;
+    background-color: var(--no-white);
+    color: var(--no-black, #2c3e50);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    font-family: var(--font-primary);
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+

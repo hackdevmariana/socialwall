@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('post_id')->constrained()->onDelete('cascade');
-            $table->string('path');
-            $table->string('alt')->nullable();
+            $table->string('name')->unique(); // Nombre único de la categoría
+            $table->string('slug')->unique(); // Slug único para la URL
+            $table->text('description')->nullable(); // Descripción opcional de la categoría
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('categories');
     }
 };
