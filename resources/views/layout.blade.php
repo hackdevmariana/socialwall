@@ -18,6 +18,7 @@
     <script src="{{ asset('js/image-upload.js') }}" defer></script>
     <script src="{{ asset('js/category-tags.js') }}" defer></script>
     <script src="{{ asset('js/placeholder-shown.js') }}" defer></script>
+    <script src="{{ asset('js/tooltip-button.js') }}" defer></script>
 
     @vite(['resources/js/app.ts'])
 </head>
@@ -38,7 +39,7 @@
 
                 Contenido principal
             </div>
-            <div class="col-lg-3 d-none d-lg-block left-column border-end">
+            <div class="col-lg-3 d-none d-lg-block left-column border-start">
                 @include('partials.sidebar-right')
             </div>
         </div>

@@ -18,7 +18,7 @@
             <x-tiny-mce-editor editor-id="post-editor" />
 
             <div class="input-container">
-                <input type="text" id="post-categories-tags" name="categories_tags" class="text-input mb-3" placeholder="Escribe una categoría o etiqueta..." />
+                <input type="text" id="post-categories-tags" name="categories_tags" class="text-input mb-3 mt-3" placeholder="Escribe una categoría o etiqueta..." />
                 <div id="tag-list" class="tag-list"></div>
             </div>
             <div id="suggestions-container" class="suggestions"></div>
@@ -47,11 +47,21 @@
                 <div id="image-preview-container"></div>
             </div>
 
+            
             <div class="flex-container button-group">
-                <button type="submit" name="status" value="scheduled" class="text-button quarter-width"><i class="bi bi-clock"></i></button>
-                <button type="submit" name="status" value="published" class="text-button quarter-width"><i class="bi bi-send"></i></button>
-                <button type="submit" name="status" value="draft" class="text-button quarter-width"><i class="bi bi-save"></i></button>
+                <button type="submit" name="status" value="scheduled" class="text-button quarter-width" data-tooltip="Programar publicación">
+                    <i class="bi bi-clock"></i>
+                </button>
+                <button type="submit" name="status" value="published" class="text-button quarter-width" data-tooltip="Publicar entrada">
+                    <i class="bi bi-send"></i>
+                </button>
+                <button type="submit" name="status" value="draft" class="text-button quarter-width" data-tooltip="Guardar borrador">
+                    <i class="bi bi-save"></i>
+                </button>
             </div>
+            <div id="tooltip-container" class="tooltip-container"></div>
+
+
         </form>
     </div>
 </div>
