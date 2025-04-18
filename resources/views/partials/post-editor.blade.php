@@ -49,7 +49,7 @@
 
             
             <div class="flex-container button-group">
-                <button type="submit" name="status" value="scheduled" class="text-button quarter-width" data-tooltip="Programar publicación">
+                <button type="button" id="schedule-btn" class="text-button quarter-width" data-tooltip="Programar publicación">
                     <i class="bi bi-clock"></i>
                 </button>
                 <button type="submit" name="status" value="published" class="text-button quarter-width" data-tooltip="Publicar entrada">
@@ -60,6 +60,23 @@
                 </button>
             </div>
             <div id="tooltip-container" class="tooltip-container"></div>
+
+
+            <!-- Modal con el selector de fecha y hora -->
+            <div id="date-modal" class="modal-container">
+                <div class="modal-content">
+                    <h3>Selecciona fecha y hora</h3>
+                    <input type="text" id="publish-date" class="text-input">
+                    <div class="btn-container">
+                        <button id="confirm-date-btn" class="btn-accept">
+                            <i class="bi bi-check-circle"></i> Confirmar
+                        </button>
+                        <button id="close-modal-btn" class="btn-reject">
+                            <i class="bi bi-x-circle"></i> Cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
 
 
         </form>

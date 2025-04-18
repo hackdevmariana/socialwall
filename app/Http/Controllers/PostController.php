@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -17,6 +18,7 @@ class PostController extends Controller
             'content' => 'nullable|string',
             'categories' => 'nullable|string',
             'tags' => 'nullable|string',
+            'publish_date' => 'nullable|date',
             'status' => 'required|in:draft,scheduled,published',
         ]);
 

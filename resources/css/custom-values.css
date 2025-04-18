@@ -477,3 +477,89 @@ textarea#tiny-editor:not(.d-none) {
 .button-group:hover::after {
     width: 100%;
 }
+
+/* Calendar */
+
+.hidden {
+    display: none;
+}
+
+#date-picker-container {
+    margin-top: 15px;
+    padding: 10px;
+    border: 2px solid var(--border-color);
+    background-color: var(--body-bg);
+    border-radius: 6px;
+    text-align: center;
+}
+
+
+/* Modal calendar */
+
+.modal-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--body-bg);
+    padding: 30px;
+    width: 350px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    z-index: 9999;
+}
+
+.modal-container.show {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Botones dentro del modal */
+.btn-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+}
+
+.btn-accept,
+.btn-reject {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-accept {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-reject {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-accept i,
+.btn-reject i {
+    font-size: 18px;
+}
