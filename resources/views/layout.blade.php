@@ -4,107 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layout base</title>
+    <title>SocialWall</title>
 
+    <!-- Estilos -->
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css" rel="stylesheet">
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-    const writePostBtn = document.getElementById('write-post-btn');
-    const editorContainer = document.getElementById('post-editor-container');
-
-    writePostBtn.addEventListener('click', function () {
-        // Alternar la clase 'show'
-        editorContainer.classList.toggle('show');
-
-        // Cambiar el texto del botón
-        writePostBtn.textContent = editorContainer.classList.contains('show')
-            ? 'Cerrar editor'
-            : 'Escribir post';
-    });
-});
-
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('js/main.js') }}" defer></script>
+    <script src="{{ asset('js/image-upload.js') }}" defer></script>
+    <script src="{{ asset('js/category-tags.js') }}" defer></script>
+    <script src="{{ asset('js/placeholder-shown.js') }}" defer></script>
 
     @vite(['resources/js/app.ts'])
-    
-
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-custom shadow-sm">
-        <div class="container d-flex justify-content-between align-items-center">
-            <div class="left">
-                <a href="{{ route('home') }}" class="logo-link">
-                    @php
-                        $logo = App\Models\Logo::first();
-                    @endphp
-            
-                    @if ($logo)
-                        <x-logo :logo="$logo" />
-                    @endif
-                </a>
-            </div>
-            
-    
-            <!-- Enlaces centrados -->
-            <div class="middle d-flex flex-grow-1 justify-content-center gap-3">
-                <a class="nav-link" href="#">Sección 1</a>
-                <a class="nav-link" href="#">Sección 2</a>
-                <a class="nav-link" href="#">Sección 3</a>
-            </div>
-    
-            <!-- Icono de cambio de color a la derecha -->
-            <div class="right">
-                <x-user-status />
-                <x-color-mode />
-            </div>
-        </div>
-    </nav>
-    
+    @include('partials.navbar')
 
     <div class="container-fluid mt-4">
         <div class="row">
-            <!-- Columna izquierda (oculta en pantallas pequeñas) -->
             <div class="col-lg-3 d-none d-lg-block left-column border-end">
-                <p>Contenido de la columna izquierda</p>
+                @include('partials.sidebar-left')
             </div>
-    
-            <!-- Columna central (siempre visible) -->
             <div class="col-12 col-lg-6 center-column">
+                @auth
+                    @include('partials.post-editor')
+                @endauth
 
-            <!-- Enlace para "Escribir post", visible solo para usuarios registrados -->
-            @auth
-                <div id="editor-container">
-                    <button id="write-post-btn" class="text-button mb-3">Escribir post</button>
-                    
-    
-                    <div id="post-editor-container" class="transition">
-                        <input type="text" id="post-title" name="title" placeholder="Título del post" class="text-input mb-3" required />
-                        <input type="url" id="social-link" name="social_link" placeholder="Enlace opcional (Youtube, Twitter...)" class="text-input mb-3" />
-                        <x-tiny-mce-editor editor-id="post-editor" />
-                    </div>
-                </div>
-            @endauth
-
-
-
-            
-
-                <p>Contenido principal</p>
+                Contenido principal
             </div>
-    
-            <!-- Columna derecha (oculta en pantallas pequeñas) -->
-            <div class="col-lg-3 d-none d-lg-block right-column border-start">
-                <p>Contenido de la columna derecha</p>
+            <div class="col-lg-3 d-none d-lg-block left-column border-end">
+                @include('partials.sidebar-right')
             </div>
         </div>
     </div>
-    
-
-
 </body>
 
 </html>
