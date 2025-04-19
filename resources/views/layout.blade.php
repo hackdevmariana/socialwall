@@ -17,12 +17,16 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-    <script src="{{ asset('js/main.js') }}" defer></script>
-    <script src="{{ asset('js/image-upload.js') }}" defer></script>
-    <script src="{{ asset('js/category-tags.js') }}" defer></script>
-    <script src="{{ asset('js/placeholder-shown.js') }}" defer></script>
-    <script src="{{ asset('js/tooltip-button.js') }}" defer></script>
-    <script src="{{ asset('js/show-calendar.js') }}" defer></script>
+    <script type="module" src="{{ asset('js/main.js') }}" defer></script>
+    <script type="module" src="{{ asset('js/image-upload.js') }}" defer></script>
+    <script type="module" src="{{ asset('js/category-tags.js') }}" defer></script>
+    <script type="module" src="{{ asset('js/modal-handler.js') }}" defer></script>
+    <script type="module" src="{{ asset('js/suggestions-handler.js') }}" defer></script>
+    <script type="module" src="{{ asset('js/tag-selection.js') }}" defer></script>
+    <script type="module" src="{{ asset('js/placeholder-shown.js') }}" defer></script>
+    <script type="module" src="{{ asset('js/tooltip-button.js') }}" defer></script>
+    <script type="module" src="{{ asset('js/show-calendar.js') }}" defer></script>
+
 
     @vite(['resources/js/app.ts'])
 </head>
