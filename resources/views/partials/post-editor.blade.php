@@ -21,6 +21,11 @@
                 <input type="text" id="post-categories-tags" name="categories_tags" class="text-input mb-3 mt-3" placeholder="Escribe una categoría o etiqueta..." />
                 <div id="tag-list" class="tag-list"></div>
             </div>
+            
+            <div id="scheduled-date-container" class="scheduled-date">
+                <p id="scheduled-date-text"></p>
+            </div>
+
             <div id="suggestions-container" class="suggestions"></div>
             <div id="custom-modal" class="modal-container">
                 <div class="modal-content">

@@ -496,6 +496,14 @@ textarea#tiny-editor:not(.d-none) {
     text-align: center;
 }
 
+.scheduled-date {
+    margin-top: 10px;
+    padding: 8px;
+    background-color: var(--border-color);
+    color: var(--text-color);
+    border-radius: 5px;
+    display: none;
+}
 
 /* Modal calendar */
 

@@ -4,12 +4,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const dateInput = document.getElementById('publish-date');
     const confirmDateBtn = document.getElementById('confirm-date-btn');
     const closeModalBtn = document.getElementById('close-modal-btn');
+    const scheduledDateContainer = document.getElementById(
+        'scheduled-date-container',
+    );
+    const scheduledDateText = document.getElementById('scheduled-date-text');
 
     // Inicializar Flatpickr dentro del modal
     flatpickr(dateInput, {
         enableTime: true,
-        dateFormat: "Y-m-d H:i",
-        minDate: "today"
+        dateFormat: 'Y-m-d H:i',
+        minDate: 'today',
     });
 
     // Mostrar el modal al hacer clic en "Programar publicación"
@@ -22,10 +26,13 @@ document.addEventListener('DOMContentLoaded', function () {
         dateModal.classList.remove('show');
     });
 
-    // Confirmar fecha y ocultar modal
+    // Confirmar fecha y mostrar en el formulario
     confirmDateBtn.addEventListener('click', function () {
-        alert(`Publicación programada para: ${dateInput.value}`);
+        const selectedDate = dateInput.value;
+        if (selectedDate) {
+            scheduledDateText.textContent = `📅 Publicación programada para: ${selectedDate}`;
+            scheduledDateContainer.style.display = 'block'; // Mostrar contenedor
+        }
         dateModal.classList.remove('show');
     });
 });
-
