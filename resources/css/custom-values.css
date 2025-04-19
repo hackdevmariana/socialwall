@@ -574,3 +574,29 @@ textarea#tiny-editor:not(.d-none) {
 .btn-reject i {
     font-size: 18px;
 }
+
+/* Images */
+.image-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.image-wrapper img {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.delete-image {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 6px;
+    border-radius: 50%;
+    cursor: pointer;
+}

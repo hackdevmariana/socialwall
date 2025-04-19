@@ -1,5 +1,7 @@
 const dropZone = document.querySelector('.drop-zone');
 const fileInput = document.getElementById('post-images');
+const previewContainer = document.getElementById('image-preview-container');
+let imageFiles = new Set(); // Usamos un Set para evitar duplicados
 
 dropZone.addEventListener('click', () => fileInput.click());
 
@@ -10,27 +12,62 @@ dropZone.addEventListener('dragover', (e) => {
 
 dropZone.addEventListener('drop', (e) => {
     e.preventDefault();
-    fileInput.files = e.dataTransfer.files;
+    const dt = new DataTransfer();
+
+    Array.from(fileInput.files).forEach((file) => dt.items.add(file)); // Mantener archivos actuales
+    Array.from(e.dataTransfer.files).forEach((file) => dt.items.add(file)); // Agregar nuevos archivos
+
+    fileInput.files = dt.files; // Actualizar el input de archivos
+    previewImages();
+});
+
+fileInput.addEventListener('change', () => {
+    const dt = new DataTransfer();
+
+    Array.from(fileInput.files).forEach((file) => dt.items.add(file)); // Mantener archivos actuales
+    fileInput.files = dt.files; // Actualizar
+
     previewImages();
 });
 
 function previewImages() {
-    const previewContainer = document.getElementById('image-preview-container');
-    const files = document.getElementById('post-images').files;
+    previewContainer.innerHTML = ''; // Limpiar visualización pero NO borrar archivos existentes
 
-    previewContainer.innerHTML = ''; // Limpiar contenedor
-    for (let i = 0; i < files.length; i++) {
-        const file = files[i];
+    Array.from(fileInput.files).forEach((file) => {
         const reader = new FileReader();
 
         reader.onload = function (e) {
+            const imageWrapper = document.createElement('div');
+            imageWrapper.classList.add('image-wrapper');
+
             const img = document.createElement('img');
             img.src = e.target.result;
             img.style.width = '100px';
             img.style.marginRight = '10px';
-            previewContainer.appendChild(img);
+
+            const deleteBtn = document.createElement('span');
+            deleteBtn.textContent = '×';
+            deleteBtn.classList.add('delete-image');
+            deleteBtn.addEventListener('click', () => removeImage(file));
+
+            imageWrapper.appendChild(img);
+            imageWrapper.appendChild(deleteBtn);
+            previewContainer.appendChild(imageWrapper);
         };
 
         reader.readAsDataURL(file);
-    }
+    });
+}
+
+function removeImage(fileToRemove) {
+    const dt = new DataTransfer();
+
+    Array.from(fileInput.files).forEach((file) => {
+        if (file !== fileToRemove) {
+            dt.items.add(file); // Mantener archivos que NO fueron eliminados
+        }
+    });
+
+    fileInput.files = dt.files; // Actualizar input de archivos
+    previewImages(); // Volver a renderizar sin la imagen eliminada
 }
