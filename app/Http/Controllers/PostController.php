@@ -26,10 +26,9 @@ class PostController extends Controller
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Asignar fecha de publicación si no existe
-        // Asignar valores por defecto si no existen
-        $validatedData['publish_date'] = $validatedData['publish_date'] ?? Carbon::now();
+
         $validatedData['content'] = $validatedData['content'] ?? ' ';
+        $validatedData['publish_date'] = $validatedData['publish_date'] ?? Carbon::now()->format('Y-m-d H:i:s');
 
 
 
@@ -43,24 +42,24 @@ class PostController extends Controller
             'user_id' => auth()->id(),
         ]);
 
-        // Guardar categorías y etiquetas en una sola columna del formulario
         if (!empty($validatedData['categories_tags'])) {
             $terms = explode(',', $validatedData['categories_tags']); // Separar por comas
             foreach ($terms as $term) {
                 $trimmedTerm = trim($term);
 
-                // Si existe en categorías, la asignamos
+                // Crear categoría solo si existe en la base de datos
                 $category = Category::where('name', $trimmedTerm)->first();
                 if ($category) {
                     $post->categories()->attach($category->id);
-                    continue;
+                } else {
+                    // Si no es categoría, la tratamos como etiqueta
+                    $tag = Tag::firstOrCreate(['name' => $trimmedTerm]);
+                    $post->tags()->attach($tag->id);
                 }
-
-                // Si no es categoría, lo tratamos como etiqueta
-                $tag = Tag::firstOrCreate(['name' => $trimmedTerm]);
-                $post->tags()->attach($tag->id);
             }
         }
+
+
 
         // Guardar imágenes asociadas al post
         if ($request->hasFile('images')) {

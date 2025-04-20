@@ -8,11 +8,19 @@ document.addEventListener('DOMContentLoaded', function () {
             ? 'Cerrar editor'
             : 'Escribir post';
     });
-});
 
-document.querySelector('form').addEventListener('submit', function () {
-    const editorContent = tinymce.get('post-editor').getContent();
-    document.getElementById('post-content').value = editorContent
-        ? editorContent
-        : ' ';
+    // Esperar a que TinyMCE esté completamente cargado antes de capturar el contenido
+    tinymce.init({
+        selector: '#post-editor',
+        setup: function (editor) {
+            editor.on('init', function () {
+                document
+                    .querySelector('form')
+                    .addEventListener('submit', function () {
+                        document.getElementById('post-content').value =
+                            editor.getContent();
+                    });
+            });
+        },
+    });
 });

@@ -103,8 +103,15 @@ class PostResource extends Resource
                 ->searchable(),
 
             TextColumn::make('publication_date')->dateTime(),
+
+            TextColumn::make('content')
+                ->label('Contenido')
+                ->limit(50) // Limita la cantidad de caracteres para que no ocupe demasiado
+                ->sortable()
+                ->searchable(),
         ]);
     }
+
 
     public static function getRelations(): array
     {
