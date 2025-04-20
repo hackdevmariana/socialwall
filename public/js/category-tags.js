@@ -16,41 +16,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (query.length >= 2) {
             // Se activan sugerencias a partir de 2 caracteres
             const data = await fetchSuggestions(query);
-            showSuggestions(
-                data.categories,
-                data.tags,
-                suggestionsContainer,
-                selectCategory,
-                addTag,
-            );
+            showSuggestions(data.tags, suggestionsContainer, addTag); // Solo usamos `tags`
         } else {
             suggestionsContainer.style.display = 'none'; // Ocultar si no hay suficiente texto
-        }
-
-        input.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter' || event.key === ',') {
-                event.preventDefault();
-                let tagText = input.value.trim().replace(',', '');
-                checkIfTagExists(tagText);
-            }
-        });
-
-        function checkIfTagExists(tagText) {
-            fetch(`/api/suggestions?query=${tagText}`)
-                .then((response) => response.json())
-                .then((data) => {
-                    const existingTags = data.tags;
-                    const existingCategories = data.categories;
-
-                    if (
-                        !existingTags.includes(tagText) &&
-                        !existingCategories.includes(tagText)
-                    ) {
-                        showModal(tagText, addTag); // Mostrar modal si no existe
-                    } else {
-                        addTag(tagText); // Si existe, añadirla directamente
-                    }
-                });
         }
     });
 
@@ -122,14 +90,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateSelectionList() {
         tagList.innerHTML = '';
-
-        // Mostrar categorías
-        selectedCategories.forEach((category) => {
-            let categoryDiv = document.createElement('div');
-            categoryDiv.classList.add('tag', 'category-selected');
-            categoryDiv.innerHTML = `${category} <span onclick="removeCategory('${category}')">&times;</span>`;
-            tagList.appendChild(categoryDiv);
-        });
 
         // Mostrar etiquetas
         tags.forEach((tag) => {

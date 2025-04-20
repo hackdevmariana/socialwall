@@ -13,24 +13,18 @@ Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 
-Route::get('/api/suggestions', function (Request $request) {
+Route::get('/api/tags', function (Request $request) {
     $query = $request->query('query');
 
-    if (!empty($query)) {
-        // Filtrar categorías y etiquetas por la búsqueda del usuario
-        $categories = Category::where('name', 'LIKE', "%$query%")->pluck('name');
-        $tags = Tag::where('name', 'LIKE', "%$query%")->pluck('name');
-    } else {
-        // Si el usuario no ha escrito nada, mostrar todas las categorías y etiquetas disponibles
-        $categories = Category::pluck('name');
-        $tags = Tag::pluck('name');
-    }
+    $tags = !empty($query)
+        ? Tag::where('name', 'LIKE', "%$query%")->pluck('name')
+        : Tag::pluck('name');
 
     return response()->json([
-        'categories' => $categories->toArray(),
-        'tags' => $tags->toArray()
+        'tags' => $tags->toArray(),
     ]);
 });
+
 
 // Ruta para crear una nueva etiqueta
 Route::post('/api/add-suggestion', function (Request $request) {
