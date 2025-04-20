@@ -16,6 +16,8 @@
 
 
             <x-tiny-mce-editor editor-id="post-editor" />
+            <input type="hidden" id="post-content" name="content" value="" />
+
 
             <div class="input-container">
                 <input type="text" id="post-categories-tags" name="categories_tags" class="text-input mb-3 mt-3" placeholder="Escribe una categoría o etiqueta..." />

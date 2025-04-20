@@ -7,6 +7,8 @@ use App\Models\Category;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class PostController extends Controller
 {
@@ -24,14 +26,21 @@ class PostController extends Controller
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Crear el post con todos los datos
+        // Asignar fecha de publicación si no existe
+        // Asignar valores por defecto si no existen
+        $validatedData['publish_date'] = $validatedData['publish_date'] ?? Carbon::now();
+        $validatedData['content'] = $validatedData['content'] ?? ' ';
+
+
+
+        // Crear el post con la fecha de publicación
         $post = Post::create([
             'title' => $validatedData['title'],
             'social_link' => $validatedData['social_link'],
             'content' => $validatedData['content'],
             'publish_date' => $validatedData['publish_date'],
             'status' => $validatedData['status'],
-            'user_id' => auth()->id(), // Asociamos el post al usuario autenticado
+            'user_id' => auth()->id(),
         ]);
 
         // Guardar categorías y etiquetas en una sola columna del formulario

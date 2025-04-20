@@ -9,3 +9,10 @@ document.addEventListener('DOMContentLoaded', function () {
             : 'Escribir post';
     });
 });
+
+document.querySelector('form').addEventListener('submit', function () {
+    const editorContent = tinymce.get('post-editor').getContent();
+    document.getElementById('post-content').value = editorContent
+        ? editorContent
+        : ' ';
+});
