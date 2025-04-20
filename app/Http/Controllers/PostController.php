@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -16,47 +17,54 @@ class PostController extends Controller
             'title' => 'required|string|max:255',
             'social_link' => 'nullable|url',
             'content' => 'nullable|string',
-            'categories' => 'nullable|string',
-            'tags' => 'nullable|string',
+            'categories_tags' => 'nullable|string',
             'publish_date' => 'nullable|date',
             'status' => 'required|in:draft,scheduled,published',
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Guardar el post
+        // Crear el post con todos los datos
         $post = Post::create([
             'title' => $validatedData['title'],
             'social_link' => $validatedData['social_link'],
             'content' => $validatedData['content'],
+            'publish_date' => $validatedData['publish_date'],
             'status' => $validatedData['status'],
+            'user_id' => auth()->id(), // Asociamos el post al usuario autenticado
         ]);
 
-        // Guardar categorías
-        if (!empty($validatedData['categories'])) {
-            $categories = explode(',', $validatedData['categories']); // Separar por comas
-            foreach ($categories as $categoryName) {
-                $category = Category::firstOrCreate(['name' => trim($categoryName)]);
-                $category->posts()->save($post);
+        // Guardar categorías y etiquetas en una sola columna del formulario
+        if (!empty($validatedData['categories_tags'])) {
+            $terms = explode(',', $validatedData['categories_tags']); // Separar por comas
+            foreach ($terms as $term) {
+                $trimmedTerm = trim($term);
+
+                // Si existe en categorías, la asignamos
+                $category = Category::where('name', $trimmedTerm)->first();
+                if ($category) {
+                    $post->categories()->attach($category->id);
+                    continue;
+                }
+
+                // Si no es categoría, lo tratamos como etiqueta
+                $tag = Tag::firstOrCreate(['name' => $trimmedTerm]);
+                $post->tags()->attach($tag->id);
             }
         }
 
-        // Guardar etiquetas
-        if (!empty($validatedData['tags'])) {
-            $tags = explode(',', $validatedData['tags']); // Separar por comas
-            foreach ($tags as $tagName) {
-                Tag::firstOrCreate(['name' => trim($tagName)]);
-            }
-        }
-
-        // Guardar imágenes
+        // Guardar imágenes asociadas al post
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {
-                $path = $imageFile->store('images', 'public'); // Almacena la imagen en el sistema de archivos
+                $path = $imageFile->store('images', 'public');
                 $post->images()->create(['path' => $path]);
             }
         }
 
         return redirect()->route('posts.index')->with('success', 'Post guardado exitosamente.');
     }
+
+
 
     public function index()
     {
