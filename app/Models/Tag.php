@@ -9,10 +9,15 @@ class Tag extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'slug', 'description'];
+    protected $fillable = ['name', 'slug', 'description', 'is_category'];
+
 
     public function posts()
     {
         return $this->belongsToMany(Post::class);
     }
+
+    protected $casts = [
+        'is_category' => 'boolean',
+    ];
 }
