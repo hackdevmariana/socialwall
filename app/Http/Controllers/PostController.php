@@ -15,6 +15,7 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all());
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'social_link' => 'nullable|url',

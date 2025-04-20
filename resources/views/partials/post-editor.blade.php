@@ -16,7 +16,7 @@
 
 
             <x-tiny-mce-editor editor-id="post-editor" />
-            <input type="hidden" id="post-content" name="content" value="" />
+            <input type="hidden" id="post-content" name="content" />
 
 
             <div class="input-container">

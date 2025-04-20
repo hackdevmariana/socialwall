@@ -34,6 +34,7 @@
     "dependencies": {
         "bootstrap": "^5.3.5",
         "flatpickr": "^4.6.13",
+        "select2": "^4.1.0-rc.0",
         "tinymce": "^7.8.0"
     }
 }
