@@ -68,10 +68,12 @@ class PostResource extends Resource
                 ->multiple()
                 ->searchable(),
 
+
             Select::make('tags')
                 ->relationship('tags', 'name')
                 ->multiple()
                 ->searchable(),
+
 
         ]);
     }
