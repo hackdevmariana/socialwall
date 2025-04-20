@@ -100,3 +100,27 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+window.addEventListener('load', function () {
+    const form = document.querySelector('form');
+    const hiddenInput = document.getElementById('categories-tags-hidden');
+
+    if (form && hiddenInput) {
+        form.addEventListener('submit', function () {
+            const tags = [
+                ...new Set(
+                    [...document.querySelectorAll('.tag')].map((tag) =>
+                        tag.textContent.replace(' ×', '').trim(),
+                    ),
+                ),
+            ];
+
+            hiddenInput.value = tags;
+            console.log('Etiquetas antes de enviar:', tags); // Verificar en consola
+        });
+    } else {
+        console.error(
+            'El formulario o el input oculto no se encontraron en el DOM.',
+        );
+    }
+});
