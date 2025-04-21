@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
         'scheduled-date-container',
     );
     const scheduledDateText = document.getElementById('scheduled-date-text');
+    const hiddenDateInput = document.getElementById('scheduled-date-hidden'); // Añadimos referencia al input oculto
 
     // Inicializar Flatpickr dentro del modal
     flatpickr(dateInput, {
@@ -32,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (selectedDate) {
             scheduledDateText.textContent = `📅 Publicación programada para: ${selectedDate}`;
             scheduledDateContainer.style.display = 'block'; // Mostrar contenedor
+            hiddenDateInput.value = selectedDate; // Guardar la fecha en el campo oculto
         }
         dateModal.classList.remove('show');
     });

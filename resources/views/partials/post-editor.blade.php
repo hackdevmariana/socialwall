@@ -18,6 +18,14 @@
             <x-tiny-mce-editor editor-id="post-editor" />
             <input type="hidden" id="post-content" name="content" />
 
+            <!-- Programar fecha 
+            <input type="hidden" id="scheduled-date-hidden" name="scheduled_date">
+<div class="input-container">
+    <label for="publish-date" class="input-label">Fecha de publicación</label>
+    <input type="text" id="publish-date" name="publish_date" class="text-input">
+</div>
+<input type="hidden" id="scheduled-date-hidden" name="scheduled_date">
+-->
 
             <div class="input-container">
                 <input type="text" id="post-categories-tags" name="categories_tags" class="text-input mb-3 mt-3" placeholder="Escribe una categoría o etiqueta..." />
@@ -45,7 +53,7 @@
             </div>
 
 
-
+<!-- Drag and drop imágenes 
             <div class="mb-3">
                 <div class="drop-zone">
                     <i class="bi bi-image"></i>
@@ -54,12 +62,31 @@
                 </div>
                 <div id="image-preview-container"></div>
             </div>
+        -->
+
+        <div class="flex-container mb-3">
+            <!-- Sección para imágenes -->
+            <div class="half-width">
+                <div class="drop-zone">
+                    <i class="bi bi-image"></i>
+                    <p>Arrastra aquí tus imágenes o haz clic para seleccionarlas</p>
+                    <input type="file" id="post-images" name="images[]" multiple class="hidden-input" onchange="previewImages()" />
+                </div>
+                <div id="image-preview-container"></div>
+            </div>
+
+            <!-- Sección para fecha de publicación -->
+            <div class="half-width">
+                <p class="publish">Programar publicación</p>
+                <label for="publish-date" class="input-label">Fecha de publicación</label>
+                <input type="text" id="publish-date" name="publish_date" class="text-input large-input">
+                <input type="hidden" id="scheduled-date-hidden" name="scheduled_date">
+            </div>
+        </div>
 
             
             <div class="flex-container button-group">
-                <button type="button" id="schedule-btn" class="text-button quarter-width" data-tooltip="Programar publicación">
-                    <i class="bi bi-clock"></i>
-                </button>
+                
                 <button type="submit" name="status" value="published" class="text-button quarter-width" data-tooltip="Publicar entrada">
                     <i class="bi bi-send"></i>
                 </button>

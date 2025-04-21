@@ -30,6 +30,9 @@
     <script type="module" src="{{ asset('js/placeholder-shown.js') }}" defer></script>
     <script type="module" src="{{ asset('js/tooltip-button.js') }}" defer></script>
     <script type="module" src="{{ asset('js/show-calendar.js') }}" defer></script>
+    <script type="module" src="{{ asset('js/scheduled-date.js') }}" defer></script>
+
+    
 
 
     @vite(['resources/js/app.ts'])

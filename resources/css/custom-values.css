@@ -460,6 +460,29 @@ textarea#tiny-editor:not(.d-none) {
     display: none;
 }
 
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+.half-width {
+    width: 50%;
+}
+
+.large-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+
+.publish{
+    font-size: 1.2rem;
+    font-family: var(--font-primary);
+    text-align: center;
+}
 
 /* Buttons explications */
 
