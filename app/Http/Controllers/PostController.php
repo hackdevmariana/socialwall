@@ -15,7 +15,7 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'social_link' => 'nullable|url',
@@ -48,17 +48,14 @@ class PostController extends Controller
             foreach ($terms as $term) {
                 $trimmedTerm = trim($term);
 
-                // Crear categoría solo si existe en la base de datos
-                $category = Category::where('name', $trimmedTerm)->first();
-                if ($category) {
-                    $post->categories()->attach($category->id);
-                } else {
-                    // Si no es categoría, la tratamos como etiqueta
-                    $tag = Tag::firstOrCreate(['name' => $trimmedTerm]);
-                    $post->tags()->attach($tag->id);
-                }
+                // Revisar si la etiqueta ya existe
+                $tag = Tag::firstOrCreate(['name' => $trimmedTerm]);
+
+                // Asociar la etiqueta al post
+                $post->tags()->attach($tag->id);
             }
         }
+
 
 
 
@@ -66,9 +63,15 @@ class PostController extends Controller
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {
                 $path = $imageFile->store('images', 'public');
-                $post->images()->create(['path' => $path]);
+
+                // Asegurarse de que la tabla `images` tenga una columna `post_id`
+                $post->images()->create([
+                    'path' => $path,
+                    'post_id' => $post->id,
+                ]);
             }
         }
+
 
         return redirect()->route('posts.index')->with('success', 'Post guardado exitosamente.');
     }
