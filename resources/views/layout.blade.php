@@ -52,7 +52,8 @@
                     @include('partials.post-editor')
                 @endauth
 
-                Contenido principal
+                @include('partials.latest-posts')
+
             </div>
             <div class="col-lg-3 d-none d-lg-block left-column border-start">
                 @include('partials.sidebar-right')
