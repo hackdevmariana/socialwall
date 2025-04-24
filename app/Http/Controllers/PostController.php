@@ -83,4 +83,9 @@ class PostController extends Controller
         $posts = Post::all(); // Obtén todos los posts
         return view('posts.index', compact('posts')); // Retorna una vista
     }
+
+    public function show(Post $post)
+    {
+        return view('posts.show', compact('post'));
+    }
 }
