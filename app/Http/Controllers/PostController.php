@@ -82,9 +82,15 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::all(); // Obtén todos los posts
-        return view('posts.index', compact('posts')); // Retorna una vista
+        $posts = Post::whereNull('publication_date')
+            ->orWhere('publication_date', '<=', now())
+            ->latest()
+            ->take(5)
+            ->get();
+
+        return view('posts.index', compact('posts'));
     }
+
 
     public function show(Post $post)
     {

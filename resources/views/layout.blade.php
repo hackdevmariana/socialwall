@@ -52,7 +52,8 @@
                     @include('partials.post-editor')
                 @endauth
 
-                @include('partials.latest-posts')
+                @include('partials.latest-posts', ['posts' => $posts])
+
 
             </div>
             <div class="col-lg-3 d-none d-lg-block left-column border-start">

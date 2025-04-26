@@ -39,8 +39,15 @@ Route::post('/api/add-suggestion', function (Request $request) {
 
 // Página de inicio
 Route::get('/', function () {
-    return view('home');
+    $posts = App\Models\Post::whereNull('publication_date')
+        ->orWhere('publication_date', '<=', now())
+        ->latest()
+        ->take(5)
+        ->get();
+
+    return view('home', compact('posts'));
 })->name('home');
+
 
 // Dashboard del usuario con autenticación
 Route::get('/dashboard', function () {
