@@ -631,3 +631,6 @@ textarea#tiny-editor:not(.d-none) {
     flex-direction: column;
 }
 
+.latest-posts {
+    transition: margin-top 0.3s ease-in-out;
+}

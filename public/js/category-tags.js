@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const suggestionsContainer = document.getElementById(
         'suggestions-container',
     );
+    const writePostBtn = document.getElementById('write-post-btn');
     const postEditor = document.getElementById('post-editor-container');
     const latestPosts = document.querySelector('.latest-posts');
 
@@ -19,6 +20,23 @@ document.addEventListener('DOMContentLoaded', function () {
             postEditor.style.height = 'auto'; // Asegura que el contenido fluya naturalmente
             latestPosts.style.marginTop = '40px'; // Desplaza hacia abajo los posts recientes
         });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const writePostBtn = document.getElementById('write-post-btn');
+        const postEditor = document.getElementById('post-editor-container');
+        const latestPosts = document.querySelector('.latest-posts');
+
+        writePostBtn.addEventListener('click', function () {
+            if (
+                postEditor.style.display === 'none' ||
+                postEditor.classList.contains('hidden')
+            ) {
+                latestPosts.style.marginTop = '0px'; // Restaurar posición
+            } else {
+                latestPosts.style.marginTop = '40px'; // Empujar hacia abajo al abrir el formulario
+            }
+        });
+    });
 
     input.addEventListener('input', async function () {
         const query = input.value.trim();
