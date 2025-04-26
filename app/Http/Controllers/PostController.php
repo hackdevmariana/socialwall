@@ -8,6 +8,7 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 
 class PostController extends Controller
@@ -16,6 +17,10 @@ class PostController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        //dd(auth()->id()); 
+
+
+
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'social_link' => 'nullable|url',
@@ -28,6 +33,8 @@ class PostController extends Controller
         ]);
 
 
+        // dd(auth()->id());
+        $validatedData['user_id'] = auth()->id();
         $validatedData['content'] = $validatedData['content'] ?? ' ';
 
         $validatedData['publish_date'] = $request->publish_date ? Carbon::parse($request->publish_date)->format('Y-m-d H:i:s') : Carbon::now()->format('Y-m-d H:i:s');
@@ -43,6 +50,7 @@ class PostController extends Controller
             'status' => $validatedData['status'],
             'user_id' => auth()->id(),
         ]);
+
 
 
         if (!empty($validatedData['categories_tags'])) {
