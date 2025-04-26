@@ -14,28 +14,17 @@ document.addEventListener('DOMContentLoaded', function () {
     let tags = [];
     let selectedCategories = [];
 
-    document
-        .getElementById('write-post-btn')
-        .addEventListener('click', function () {
-            postEditor.style.height = 'auto'; // Asegura que el contenido fluya naturalmente
-            latestPosts.style.marginTop = '40px'; // Desplaza hacia abajo los posts recientes
-        });
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const writePostBtn = document.getElementById('write-post-btn');
-        const postEditor = document.getElementById('post-editor-container');
-        const latestPosts = document.querySelector('.latest-posts');
-
-        writePostBtn.addEventListener('click', function () {
-            if (
-                postEditor.style.display === 'none' ||
-                postEditor.classList.contains('hidden')
-            ) {
-                latestPosts.style.marginTop = '0px'; // Restaurar posición
-            } else {
-                latestPosts.style.marginTop = '40px'; // Empujar hacia abajo al abrir el formulario
-            }
-        });
+    writePostBtn.addEventListener('click', function () {
+        if (
+            postEditor.style.display === 'none' ||
+            postEditor.style.display === ''
+        ) {
+            postEditor.style.display = 'block'; // Mostrar el formulario
+            latestPosts.style.marginTop = '500px'; // Mover hacia abajo al abrir
+        } else {
+            postEditor.style.display = 'none'; // Ocultar el formulario
+            latestPosts.style.marginTop = '0px'; // Restaurar posición al cerrar
+        }
     });
 
     input.addEventListener('input', async function () {
@@ -144,7 +133,7 @@ window.addEventListener('load', function () {
             ];
 
             hiddenInput.value = tags;
-            console.log('Etiquetas antes de enviar:', tags); // Verificar en consola
+            console.log('Etiquetas antes de enviar:', tags);
         });
     } else {
         console.error(
