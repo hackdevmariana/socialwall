@@ -7,8 +7,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const suggestionsContainer = document.getElementById(
         'suggestions-container',
     );
+    const postEditor = document.getElementById('post-editor-container');
+    const latestPosts = document.querySelector('.latest-posts');
+
     let tags = [];
     let selectedCategories = [];
+
+    document
+        .getElementById('write-post-btn')
+        .addEventListener('click', function () {
+            postEditor.style.height = 'auto'; // Asegura que el contenido fluya naturalmente
+            latestPosts.style.marginTop = '40px'; // Desplaza hacia abajo los posts recientes
+        });
 
     input.addEventListener('input', async function () {
         const query = input.value.trim();

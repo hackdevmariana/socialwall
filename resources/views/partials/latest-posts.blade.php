@@ -1,3 +1,4 @@
+<div class="latest-posts">
 <ul>
     @foreach(App\Models\Post::latest()->take(5)->get() as $post)
         <li>
@@ -11,3 +12,4 @@
         </li>
     @endforeach
 </ul>
+</div>
