@@ -15,7 +15,7 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-
+        // dd($request->all());
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'social_link' => 'nullable|url',
@@ -29,7 +29,8 @@ class PostController extends Controller
 
 
         $validatedData['content'] = $validatedData['content'] ?? ' ';
-        $validatedData['publish_date'] = $validatedData['publish_date'] ?? Carbon::now()->format('Y-m-d H:i:s');
+
+        $validatedData['publish_date'] = $request->publish_date ? Carbon::parse($request->publish_date)->format('Y-m-d H:i:s') : Carbon::now()->format('Y-m-d H:i:s');
 
 
 
@@ -38,10 +39,11 @@ class PostController extends Controller
             'title' => $validatedData['title'],
             'social_link' => $validatedData['social_link'],
             'content' => $validatedData['content'],
-            'publish_date' => $validatedData['publish_date'],
+            'publication_date' => $validatedData['publish_date'],
             'status' => $validatedData['status'],
             'user_id' => auth()->id(),
         ]);
+
 
         if (!empty($validatedData['categories_tags'])) {
             $terms = explode(',', $validatedData['categories_tags']); // Separar por comas
